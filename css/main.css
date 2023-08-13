@@ -1,0 +1,139 @@
+table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+table td,
+table th {
+    border: 1px solid #dddddd;
+    padding: 8px;
+}
+.btcard{
+    display: grid;
+    height: 10px;
+    width: 10px;
+}
+.buttons{
+    margin-bottom: 25px;
+}
+
+
+table tr:nth-child(even) {
+    background-color: #bb9696;
+}
+table tr:nth-child(odd) {
+    background-color: #848bca;
+}
+
+table tr:hover {
+    background-color: #ddd;
+}
+
+.hidden {
+    display: none;
+}
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgb(182, 125, 50);
+    color: white;
+}
+
+.btn-remove {
+    background-color: rgb(151, 4, 4);
+    color: aliceblue;
+}
+
+button {
+    gap: 10px;
+    padding: 10px;
+    background-color: rgb(145, 191, 191);
+}
+
+.modal {
+    position: absolute;
+    top: 0px;
+    left: 150%;
+    color: #f2f2f2;
+    background-color: #111;
+    padding: 10px;
+    height: 80vh;
+    min-width: 300px;
+    text-align: center;
+    transition: left .20s;
+}
+
+.modal.open {
+    left: 50%;
+}
+
+.modal h3 {
+    color: pink;
+    text-decoration: overline;
+    text-transform: capitalize;
+}
+
+.modal h4 span {
+    color: pink;
+}
+
+.modal>p {
+    text-align: left;
+}
+
+.user-msg {
+    position: fixed;
+    bottom: -100px;
+    right: 10px;
+    color: #f2f2f2;
+    background-color: #111;
+    padding: 10px;
+    transition: bottom .5s;
+}
+
+.user-msg.open {
+    bottom: 10px;
+}
+
+.add {
+    height: 50px;
+    width: 150px;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(183, 176, 76);
+    margin-bottom: 20px;
+}
+
+.card-container .user-list {
+    display: flex;
+    /* justify-content: space-evenly; */
+    align-items: initial;
+    gap: 1rem;
+    height: 30vh;
+    width: 150vw;
+    /* align-items: space-between; */
+}
+
+.card-container .user-list div {
+    padding: 0.5rem 2.5rem;
+    background-color: rgb(144, 92, 47);
+}
+.buttons{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-inline-start: 25vw;
+}
+.footer{
+    position: sticky;
+    bottom: 15vh;
+    left: 0;
+}

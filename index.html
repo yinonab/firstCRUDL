@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="onInit()">
+    <Header>
+    
+        <form class="searchForm" onsubmit="return onSetFilterBy(event, {name: this.searchInput.value})">
+            <label class="search" for="searchInput">Search: <input type="text" id="searchInput" name="q"></label>
+            <button type="submit">Search</button>
+        </form>
+        <label>
+            Rate:
+            <input type="number" min="0" max="5" value="0" class="rate"
+                onchange="this.title=this.value;onSetFilterBy( event,{rate: +this.value})" />
+        </label>
+        <label>
+            price:
+            <input type="range" min="0" max="250" value="0" class="price"
+                onchange="this.title=this.value;onSetFilterBy(event,{price: +this.value})" />
+        </label>
+        <div>
+            Sort by:
+            <select class="sort-by" onchange="onSetSortBy()">
+                <option value="">Select Sorting</option>
+                <option value="name">By name</option>
+                <option value="price">Price</option>
+                <option value="rate">Rate</option>
+            </select>
+            <label>
+                Descending
+                <input class="sort-desc" type="checkbox" oninput="onSetSortBy()" />
+            </label>
+        </div>
+        <button class="add" onclick="onAddBook()">ADD BOOK</button>
+    </Header>
+<section>
+    <table >
+        <thead class="head" >
+            <th>ID</th>
+            <th>NAME</th>
+            <th>PRICE</th>
+            <th>RATE</th>
+        <tbody class="table-body" >
+
+        </tbody>
+        </thead>
+    </table>
+    </section>
+
+    <section class="card-container hidden">
+        <ul class="user-list"></ul>
+    </section>
+    <div class="buttons">
+        <button class="prev" title="Prev Page" onclick="onPrevPage()">Preve Page</button>
+        <button class="next" title="Next Page" onclick="onNextPage()">Next Page</button>
+        <button class="grid" title="grid" onclick="onGrid()">CARDS</button>
+        <button class="table" title="Next Page" onclick="onTable()">TABLE</button>
+    </div>
+    <footer class="footer">
+        <table>
+            <tbody class="diagram">
+    
+            </tbody>
+        </table>
+    </footer>
+    
+    <div class="modal">
+        <h3></h3>
+        <h4>PRICE <span></span> </h4>
+        <h5>Book Description</h5>
+        <p></p>
+        <button onclick="onCloseModal()">Close</button>
+    </div>
+
+    <div class="user-msg"></div>
+    <script src="js/services/util.service.js"></script>
+    <script src="js/services/book.service.js"></script>
+    <script src="js/book.controler.js"></script>
+</body>
+
+</html>
