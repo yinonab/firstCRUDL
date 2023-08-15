@@ -56,6 +56,7 @@ function onAddBook(name, price) {
     if (name && price) {
         const book = addBook(name, price)
         renderBooks()
+        renderStatistic()
     }
 }
 function onReadBook(bookId) {
@@ -92,6 +93,7 @@ function renderStatistic() {
 function onRemoveBook(bookId) {
     removeBook(bookId)
     renderBooks()
+    renderStatistic()
     flashMsg('Book Removed')
 }
 // function onNextPage() {
