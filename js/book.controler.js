@@ -14,9 +14,14 @@ function renderBooks() {
     <div class="user-card">
         <p><strong>ID:</strong> ${book.id}</p>
         <p><strong>NAME:</strong> ${book.name}</p>
-        <p><strong>PRICE<br></strong> ${book.Price}</p>
-        <p><strong>RATE</strong> ${book.rate}</p>
-    </div>
+        <p><strong>PRICE:</strong> ${book.Price}</p>
+        <p><strong>RATE:</strong> ${book.rate}</p>
+        
+        <button  class="btcard" onclick="onUpdateBook('${book.id}')">Update</button>
+        <button title="Delete Book" class="btn-remove btcard " onclick="onRemoveBook('${book.id}')">X</button>
+        <button class="btcard" onclick="onReadBook('${book.id}')">Details</button>
+        
+        </div>
     `).join('')
 
     setElHtml('user-list', strCardHtml)
@@ -38,11 +43,11 @@ function onGrid() {
     console.log('hi');
     addClass('hidden', 'table-body')
     addClass('hidden', 'head')
-    removeClass('hidden','card-container' )
+    removeClass('hidden', 'card-container')
 }
 function onTable() {
     removeClass('hidden', 'head')
-    addClass('hidden','card-container' )
+    addClass('hidden', 'card-container')
     removeClass('hidden', 'table-body')
 }
 function onAddBook(name, price) {
@@ -70,8 +75,8 @@ function onUpdateBook(bookId) {
         renderBooks()
     }
 }
-function renderStatistic(){
-    var stat =getBookCountByPriceMap()
+function renderStatistic() {
+    var stat = getBookCountByPriceMap()
     console.log('statistics:', stat)
     var strHtml =
         `
@@ -89,28 +94,33 @@ function onRemoveBook(bookId) {
     renderBooks()
     flashMsg('Book Removed')
 }
-function onNextPage() {
-    nextPage()
-    renderBooks()
-}
+// function onNextPage() {
+//     nextPage()
+//     renderBooks()
+// }
 
-function onPrevPage() {
-    prevPage()
+// function onPrevPage() {
+//     prevPage()
+//     renderBooks()
+// }
+function onChangePage(diff) {
+    changePage(diff)
     renderBooks()
+    renderStatistic
 }
-function onSetFilterBy(ev,filterBy) { // { minSpeed: 74 }
+function onSetFilterBy(ev, filterBy) {
     console.log('filterBy:', filterBy)
     ev.preventDefault()
     filterBy = setBookFilter(filterBy)
     renderBooks()
-    var elInput=document.getElementById('searchInput')
+    var elInput = document.getElementById('searchInput')
     console.log('elInput:', elInput)
-    elInput.value=''
+    elInput.value = ''
     const queryParams = `?name=${filterBy.name}&price=${filterBy.price}&rate=${filterBy.rate}`
     const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + queryParams
 
     window.history.pushState({ path: newUrl }, '', newUrl)
-     
+
 }
 function onSetSortBy() {
     const prop = document.querySelector('.sort-by').value

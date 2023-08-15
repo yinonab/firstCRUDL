@@ -17,8 +17,9 @@ var gNames = [
     'Fool Me Once',
 ]
 var gBooks
-const PAGE_SIZE = 6
+const PAGE_SIZE = 3
 var gPageIdx = 0
+var gCountBooksShown
 
 
 
@@ -31,21 +32,27 @@ function getBooks() {
         book.rate<=gFilterBy.rate&&
         book.Price<=gFilterBy.price
         )
+        gCountBooksShown = books.length
     const startIdx = gPageIdx * PAGE_SIZE
     books = books.slice(startIdx, startIdx + PAGE_SIZE)
     console.log('books:', books)
     return books
 }
-function nextPage() {
-    if (gBooks===[])return
-    gPageIdx++
-    if(gPageIdx * PAGE_SIZE > gBooks.length-gPageIdx) gPageIdx = 0
-}
-function prevPage() {
-    if (gBooks===[])return
+// function nextPage() {
+//     if (gBooks===[])return
+//     gPageIdx++
+//     if(gPageIdx <0) gPageIdx=0
+// }
+// function prevPage() {
+//     if (gBooks===[])return
 
-    gPageIdx--
-    if(gPageIdx * PAGE_SIZE <gBooks.length) gPageIdx = 0
+//     gPageIdx--
+//     if(gPageIdx * PAGE_SIZE >=gBooks.length) gPageIdx--
+// }
+function changePage(diff) {
+    gPageIdx += diff
+    if (gPageIdx < 0) gPageIdx = 0
+    else if ((gPageIdx * PAGE_SIZE) >= gCountBooksShown) gPageIdx--
 }
 function addBook(name,price) {   //create
     const book = _createBook(name,price)
@@ -77,7 +84,7 @@ function updateBook(bookId, newPrice) {  //update
 function removeBook(bookId) {  ///delate
     const bookIdx = gBooks.findIndex(book => bookId === book.id)
     gBooks.splice(bookIdx, 1)
-    _saveBookToStorage
+    _saveBookToStorage()
 }
 
 function setBookFilter(FilterBy = {}) {
